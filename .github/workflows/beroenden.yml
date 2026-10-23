@@ -1,0 +1,23 @@
+# Granskar nya och ändrade beroenden i varje PR: stoppar kända sårbarheter
+# på nivån moderate eller högre. I merge queue hoppas jobbet över; PR:en är
+# redan granskad, och ett överhoppat jobb räknas som godkänt.
+name: Beroenden
+
+on:
+  pull_request:
+    branches: [main]
+  merge_group:
+
+permissions:
+  contents: read
+
+jobs:
+  dependencies:
+    name: Beroendegranskning
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
+        with:
+          fail-on-severity: moderate

@@ -4,19 +4,19 @@
 name: Swift
 
 on:
-  repository_dispatch:
-    types: [agent-pr-merged]
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
   merge_group:
-    types: [ checks_requested ]
+  # En gång i veckan, eftersom allt följer senaste versionen.
+  schedule:
+    - cron: "41 3 * * 1"
+  workflow_dispatch:
 
 jobs:
   package:
     name: Swift package (${{ matrix.os }})
-    if: github.event_name != 'repository_dispatch' || github.sha == github.event.client_payload.merge_sha
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read
@@ -27,7 +27,6 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.merge_sha || '' }}
           persist-credentials: false
       - name: Build
         run: swift build -v
@@ -36,14 +35,12 @@ jobs:
 
   applications:
     name: Apple applications
-    if: github.event_name != 'repository_dispatch' || github.sha == github.event.client_payload.merge_sha
     runs-on: macos-26
     permissions:
       contents: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.merge_sha || '' }}
           persist-credentials: false
       - name: Validate Apple app SwiftPM manifest
         run: swift package dump-package --package-path App > /dev/null
