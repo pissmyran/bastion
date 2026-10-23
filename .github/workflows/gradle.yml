@@ -1,0 +1,95 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
+
+name: Java CI with Gradle
+
+on:
+  repository_dispatch:
+    types: [agent-pr-merged]
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  merge_group:
+    types: [ checks_requested ]
+
+jobs:
+  build:
+    name: Android Gradle
+    if: github.event_name != 'repository_dispatch' || github.sha == github.event.client_payload.merge_sha
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    defaults:
+      run:
+        working-directory: Android
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.merge_sha || '' }}
+          persist-credentials: false
+      - name: Set up JDK 17
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@3f5f9adaf7d9fecd50b5935e54106014257a94e6 # v6.4.0
+      - name: Build with Gradle Wrapper
+        run: ./gradlew build
+
+  dependency-graph:
+    name: Generate dependency graph
+    if: >-
+      (github.event_name == 'push' || github.event_name == 'pull_request' || github.event_name == 'merge_group') ||
+      (github.event_name == 'repository_dispatch' && github.sha == github.event.client_payload.merge_sha)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.merge_sha || '' }}
+          persist-credentials: false
+      - name: Set up JDK 17
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Generate and upload Android dependency graph
+        uses: gradle/actions/dependency-submission@3f5f9adaf7d9fecd50b5935e54106014257a94e6 # v6.4.0
+        with:
+          build-root-directory: Android
+          dependency-graph: generate-and-upload
+          dependency-graph-continue-on-failure: false
+          artifact-retention-days: 1
+          dependency-graph-include-projects: '^(:|:app)$'
+          dependency-graph-include-configurations: '^(classpath|.*[Rr]untimeClasspath)$'
+
+  dependency-submission:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.merge_sha || '' }}
+          persist-credentials: false
+      - name: Set up JDK 17
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Generate and submit Android dependency graph
+        uses: gradle/actions/dependency-submission@3f5f9adaf7d9fecd50b5935e54106014257a94e6 # v6.4.0
+        with:
+          build-root-directory: Android
+          dependency-graph-continue-on-failure: false
+          dependency-graph-include-projects: '^(:|:app)$'
+          dependency-graph-include-configurations: '^(classpath|.*[Rr]untimeClasspath)$'

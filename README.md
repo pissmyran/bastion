@@ -1,13 +1,38 @@
 # Bastion
 
-En SSH-klient för iOS.
+Bastion är ett multiplattformsprojekt med en delad Swift-baserad SSH-kärna och separata applikationsytor för Apple-plattformar, Android, Linux och Windows.
 
-Projektet är i ett tidigt skede och innehåller ännu ingen kod.
+## Struktur
 
-## Bidra
+| Område | Plats | Teknik |
+| --- | --- | --- |
+| delad SSH-kärna + CLI | `Sources/`, `Tests/`, `Package.swift` | Swift / SwiftNIO |
+| iOS, macOS, tvOS | `App/` | Swift / XcodeGen |
+| Android | `Android/` | Kotlin / Gradle |
+| Linux | `LinuxApp/` | Rust |
+| Windows | `WindowsApp/` | .NET |
 
-Frågor och idéer tas i [Discussions](https://github.com/VineDrinker/.github/discussions), fel och förslag som issues här. Läs [CONTRIBUTING.md](https://github.com/VineDrinker/.github/blob/main/CONTRIBUTING.md) innan du öppnar en pull request. Säkerhetsproblem rapporteras privat via fliken Security.
+## Snabb verifiering
 
-## Licens
+Swift-kärnan:
 
-MIT, se [LICENSE](LICENSE).
+```bash
+swift test
+```
+
+Övriga plattformar har egna bygg- och verifieringsflöden; se **[dokumentationsöversikten](docs/index.md)**.
+
+## Dokumentation
+
+Den publicerade dokumentationssajten är `https://docs.bastion.denied.se`. Källan är alltid repositoryts versionsstyrda `docs/`, och stable dokumentation byggs från samma Git-tagg som Bastions GitHub Release.
+
+- [Dokumentationsöversikt](docs/index.md)
+- [Projektkontext](docs/project-context.md) — plattformar och bygginvarianter
+- [Arkitektur](docs/architecture.md) — komponentgränser och delad kärna
+- [Drift och verifiering](docs/operations.md) — plattformsspecifika kontroller
+- [Release- och versionsstandard](docs/release-standard.md) — SemVer, PR-titlar och releasegränser
+- [SECURITY.md](SECURITY.md) — säkerhetsrapportering
+
+## Viktig Apple-invariant
+
+`App/Package.swift` är manifestet som dependency automation kan läsa. `App/generate-project.sh` läser dependencyversioner därifrån och matar dem vidare till XcodeGen. Generera därför inte Bastions Apple-projekt med en direkt `xcodegen generate --spec App/project.yml` om det kringgår wrappern.

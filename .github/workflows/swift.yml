@@ -1,0 +1,59 @@
+# This workflow will build a Swift project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
+
+name: Swift
+
+on:
+  repository_dispatch:
+    types: [agent-pr-merged]
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  merge_group:
+    types: [ checks_requested ]
+
+jobs:
+  package:
+    name: Swift package (${{ matrix.os }})
+    if: github.event_name != 'repository_dispatch' || github.sha == github.event.client_payload.merge_sha
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.merge_sha || '' }}
+          persist-credentials: false
+      - name: Build
+        run: swift build -v
+      - name: Run tests
+        run: swift test -v
+
+  applications:
+    name: Apple applications
+    if: github.event_name != 'repository_dispatch' || github.sha == github.event.client_payload.merge_sha
+    runs-on: macos-26
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.merge_sha || '' }}
+          persist-credentials: false
+      - name: Validate Apple app SwiftPM manifest
+        run: swift package dump-package --package-path App > /dev/null
+      - name: Generate Xcode project
+        run: brew install xcodegen && sh App/generate-project.sh
+      - name: Ensure tvOS runtime
+        run: xcrun simctl list runtimes available | grep -q tvOS || xcodebuild -downloadPlatform tvOS
+      - name: Build iOS application scheme
+        run: xcodebuild build -skipPackagePluginValidation -project App/Bastion.xcodeproj -scheme Bastion -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO
+      - name: Build macOS application scheme
+        run: xcodebuild build -skipPackagePluginValidation -project App/Bastion.xcodeproj -scheme Bastion-macOS -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO
+      - name: Build tvOS application scheme
+        run: xcodebuild build -skipPackagePluginValidation -project App/Bastion.xcodeproj -scheme Bastion-tvOS -destination 'generic/platform=tvOS Simulator' CODE_SIGNING_ALLOWED=NO
