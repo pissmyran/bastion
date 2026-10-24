@@ -78,7 +78,7 @@ Ingen release skapas för att ”komma runt” CI, review eller repositoryskydd.
 
 ## Required checks
 
-Bastions release-target ska ha lyckad verifiering från repositoryts plattforms- och säkerhetsdomäner:
+Bastions release-target ska ha lyckad verifiering från repositoryts plattformsdomäner:
 
 - Rust;
 - Android Gradle;
@@ -87,8 +87,9 @@ Bastions release-target ska ha lyckad verifiering från repositoryts plattforms-
 - Windows application;
 - Swift package på Ubuntu;
 - Swift package på macOS;
-- Apple applications;
-- CodeQL för Actions, C#, Java/Kotlin, Ruby, Rust och Swift.
+- Apple applications.
+
+CodeQL körs med GitHubs default setup och krävs i reglerna för `main`, inte i releasegaten.
 
 Checknamnen versioneras i `.github/release-required-checks`. Releasegaten bedömer endast dessa uttryckligen required checks och kräver `success` för dem.
 
