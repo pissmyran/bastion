@@ -30,7 +30,7 @@ let package = Package(
         // PR #149 fixade). Kontrollerat 2026-08-11: #3647 fortfarande öppen.
         // Byt tillbaka till `from:` när uppströms löser #3647 på riktigt.
         .package(url: "https://github.com/apple/swift-nio.git", exact: "2.103.0"),
-        .package(url: "https://github.com/apple/swift-crypto.git", from: "4.5.0"),
+        .package(url: "https://github.com/apple/swift-crypto.git", from: "5.0.3"),
     ],
     targets: [
         .target(
