@@ -34,7 +34,7 @@
          med av sig själv. Microsoft.Windows.SDK.BuildTools har tagits bort
          helt av samma skäl — inget i projektet refererar den, den kommer med
          WindowsAppSDK. -->
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.*" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.431*" />
   </ItemGroup>
 
   <ItemGroup>
