@@ -16,7 +16,10 @@ let package = Package(
         .executable(name: "bastion-cli", targets: ["bastion-cli"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-nio-ssh.git", from: "0.14.0"),
+        // Tillfällig branch tills apple/swift-nio-ssh accepterar swift-crypto 5.x.
+        // Uppströms fix: https://github.com/apple/swift-nio-ssh/pull/259
+        // Branch-referensen flyter; byt tillbaka till officiell release när fixen släppts.
+        .package(url: "https://github.com/simonjbeaumont/swift-nio-ssh.git", branch: "widen-swift-crypto"),
         // Exakt pinnad p.g.a. apple/swift-nio#3647: swift-nios EGNA
         // Sendable/IPPROTO-kompileringsfel på Windows, som bara triggas när
         // dess källor kompileras i Swift 6-strict-concurrency-läge — styrs av
@@ -30,6 +33,7 @@ let package = Package(
         // PR #149 fixade). Kontrollerat 2026-08-11: #3647 fortfarande öppen.
         // Byt tillbaka till `from:` när uppströms löser #3647 på riktigt.
         .package(url: "https://github.com/apple/swift-nio.git", exact: "2.103.0"),
+        // Behåll ett flytande versionsintervall så Renovate kan uppdatera miniminivån.
         .package(url: "https://github.com/apple/swift-crypto.git", from: "5.0.3"),
     ],
     targets: [
