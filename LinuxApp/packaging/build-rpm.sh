@@ -78,7 +78,7 @@ Name: bastion-linuxapp
 Version: ${VERSION}
 Release: 1%{?dist}
 Summary: Fri, öppen, fristående SSH-klient (GTK4-skrivbordsklient)
-License: MIT
+License: Apache-2.0
 URL: ${REPOSITORY_URL}
 Requires: ${REQUIRES}
 
