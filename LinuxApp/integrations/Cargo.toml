@@ -20,5 +20,5 @@ rust-version = "1.92"
 # nu gör paketgränsen det omöjligt. Den som vill anropa en GTK-widget
 # härifrån får ett kompileringsfel, inte en kodgranskning.
 [dependencies]
-serde_json = "1"
+serde_json = "1.0.154"
 
