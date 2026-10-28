@@ -14,7 +14,7 @@
 
 ## Projektet
 
-Projektet [Bastion](https://github.com/pissmyran/bastion/projects) samlar ärenden och pull requests från alla fem repona. Fältet **Plattform** visar vilket repo ett ärende hör till.
+Projektet [Bastion](https://github.com/pissmyran/bastion/projects) samlar ärenden och pull requests från alla fem repona. Kolumnen **Repository** visar vilket repo ett ärende hör till.
 
 ## Säkerhetsproblem
 
