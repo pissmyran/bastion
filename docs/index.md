@@ -1,62 +1,67 @@
-# Dokumentation
+---
+title: Start
+template: home.html
+hide:
+  - navigation
+  - toc
+---
 
-Navigationssida för Bastion.
+## Välj plattform { #plattformar }
 
-## Hitta rätt
+<div class="grid cards" markdown>
 
-| Om du arbetar med… | Läs |
-| --- | --- |
-| repositoryts plattformar och bygginvarianter | [Projektkontext](project-context.md) |
-| delad kärna och plattformsgränser | [Arkitektur](architecture.md) |
-| bygg/test för Swift, Apple, Android, Linux eller Windows | [Drift](operations.md) |
-| versionering, PR-titlar och GitHub Releases | [Release- och versionsstandard](release-standard.md) |
-| Apple-prototyper | [GUI-prototyp](prototyp/bastion-gui.html) |
-| säkerhetsrapportering | [Security policy](https://github.com/Avkroken/Bastion/security/policy) |
+-   **Bastion för Apple**
 
-## Plattformskarta
+    ---
 
-```text
-                    SSHCore
-                      |
-      +---------------+----------------+
-      |               |                |
- bastion-cli       Apple apps       other apps
-   Swift           iOS/macOS/tvOS    Android
-                                    Linux
-                                    Windows
-```
+    SSH-klienten för iPhone, iPad, Mac och Apple TV. Här finns också den delade Swift-kärnan SSHCore och synkformatet.
 
-## Kodområden
+    [Dokumentation](https://pissmyran.github.io/bastion_apple/) · [Källkod](https://github.com/pissmyran/bastion_apple)
 
-- `Sources/` — delad Swift-kärna och CLI-kod.
-- `Tests/` — Swift-package tester.
-- `App/` — XcodeGen-baserade Apple-appar.
-- `Android/` — Androidprojekt.
-- `LinuxApp/` — separat Linuxpaket.
-- `WindowsApp/` — Windowsapplikation.
+-   **Bastion för Linux**
 
-## Viktiga läsvägar
+    ---
 
-### Apple/Xcode
+    SSH-klienten för Linux-skrivbordet, skriven i Rust med GTK 4 och libadwaita.
 
-Läs project-context och operations innan `Package.swift`, XcodeGen-spec eller generation scripts ändras.
+    [Dokumentation](https://pissmyran.github.io/bastion_linux/) · [Källkod](https://github.com/pissmyran/bastion_linux)
 
-### Swift-kärna
+-   **Bastion för Windows**
 
-Läs root `Package.swift`, `Sources/` och `Tests/`.
+    ---
 
-### Android
+    SSH-klienten för Windows, med en .NET-kärna och ett WinUI-gränssnitt.
 
-Läs Androids Gradlekonfiguration och operations-dokumentets dependency-graph-gräns.
+    [Dokumentation](https://pissmyran.github.io/bastion_windows/) · [Källkod](https://github.com/pissmyran/bastion_windows)
 
-### Linux/Windows
+-   **Bastion för Android**
 
-Behandla respektive app som separat builddomän med egen toolchain, men låt gemensam protokoll-/SSH-logik ligga i avsedd delad kärna där arkitekturen medger det.
+    ---
 
-### Release
+    SSH-klienten för Android, skriven i Kotlin med Apache MINA SSHD.
 
-Läs release-standard för Conventional Commit-kompatibla PR-titlar, SemVer, GitHub Release-gränsen och varför repositoryrelease inte implicit innebär plattformsdistribution.
+    [Dokumentation](https://pissmyran.github.io/bastion_android/) · [Källkod](https://github.com/pissmyran/bastion_android)
 
-## Wiki
+</div>
 
-Om GitHub Wiki används kan den ge en klickbar plattformsindelad manual. Den ska spegla den versionsstyrda dokumentationen här; repo-specifik teknisk current-state ska inte bara finnas i Wiki.
+## Gemensamt
+
+<div class="grid cards" markdown>
+
+-   **Synkformat**
+
+    ---
+
+    Formatet som värdlistan delar mellan plattformarna.
+
+    [Synkformat](synkformat.md)
+
+-   **Bidra och rapportera**
+
+    ---
+
+    Var fel, önskemål och säkerhetsproblem hör hemma.
+
+    [Bidra](bidra.md)
+
+</div>
