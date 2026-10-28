@@ -14,11 +14,11 @@ De gemensamma reglerna för alla repon finns i [STYRNING.md](https://github.com/
 3. **Gren och pull request.** Varje session börjar från senaste `main` (`git fetch origin main`) på en egen gren. `main` ändras bara genom en PR som squash-mergas. Ingen pushar direkt till `main`. En sessions arbete hålls i en PR.
 4. **Testa lokalt före varje push.** Det finns inga testkontroller i CI. Repots egna tester och kontroller (avsnittet Kommandon i repots `CLAUDE.md`) är den enda testgrinden. Pusha aldrig med fallerande tester, och skriv tester för det du ändrar.
 5. **Rör aldrig workflows.** `.github/workflows/`, `.github/actions/` och `CODEOWNERS` ändras inte av Claude, inte ens för att laga ett fel. Ingen kontroll stoppar det längre, men regeln gäller fullt ut. Behövs en ändring: beskriv den i ett issue och låt ägaren göra den. Bara Renovate och Dependabot får uppdatera dem.
-6. **Granskning.** CodeRabbit och Sourcery granskar och CodeQL (GitHubs standardinställning) skannar. Varje granskningstråd måste lösas innan merge. Svara i tråden med vad du ändrade, eller med skälet om fyndet är brus.
-7. **Auto-merge sist.** Slå på auto-merge först när CodeRabbit och Sourcery har granskat den senaste commiten och alla trådar är lösta. Ändrar PR:en bara filer som CodeRabbit hoppar över (`docs/`, `*.md`), räcker det att CodeQL är klar.
+6. **Granskning.** CodeRabbit, Sourcery och Codex granskar, och CodeQL (GitHubs standardinställning) skannar. Varje granskningstråd måste lösas innan merge. Svara i tråden med vad du ändrade, eller med skälet om fyndet är brus.
+7. **Auto-merge sist.** Slå på auto-merge först när granskningsbotarna har granskat den senaste commiten, alla trådar är lösta och alla kontroller som körs på PR:en är gröna, även de som reglerna inte kräver (till exempel `Dokumentation`).
 8. **Laga orsaken, inte symptomet.** När något fallerar eller en granskning kräver ändring: läs allt, hitta orsaken och gör om den delen rätt. Små uppenbara fel får rättas direkt. Försvaga aldrig ett test, hoppa aldrig över en kontroll och tysta aldrig en varning.
 9. **Säkerhet först.** Säkerhetslarm (CodeQL, Dependabot, Renovate) går före annat arbete. Länka issuet med `Closes #n`.
-10. **Senaste versionerna.** Lås aldrig verktyg, runtime eller paket till ett versionsnummer; använd `@latest`, `node`, `latest` och versionsintervall. Renovate håller allt aktuellt. Enda undantaget är actions, som låses med commit-SHA och uppdateras av Renovate.
+10. **Senaste versionerna.** Lägg aldrig till nya låsningar till ett versionsnummer; använd `@latest`, `node`, `latest` och versionsintervall. Befintliga låsningar som Renovate håller aktuella (till exempel `packageManager`, `requirements-docs.txt`, `.node-version`, lockfiler och actions låsta med commit-SHA) behålls och ändras bara av Renovate.
 11. **Commits och titlar.** Sessionen signerar commits själv. Ändra aldrig gits användare, e-post eller signering, och använd aldrig `--no-verify`. PR-titeln blir commiten på `main` och skrivs på engelska enligt Conventional Commits: `typ: beskrivning` eller `typ(område): beskrivning`, med typ feat, fix, docs, refactor, perf, test, build, ci, chore, style eller revert.
 12. **Dokumentation i samma PR.** Ändras beteende, inställningar eller kommandon uppdateras `README.md`, `docs/` och repots `CLAUDE.md` i samma PR.
 13. **Inga lösa grenar.** Radera grenen när PR:en är mergad eller stängd. PR:er från forkar är förslag: gör ändringen själv på en egen gren om den är önskad, och stäng originalet med tack och länk.
@@ -42,11 +42,13 @@ cd LinuxApp && cargo test
 dotnet test WindowsApp/Bastion.Core.Tests
 ```
 
+Windows-appen själv (`WindowsApp/WindowsApp.csproj`, WinUI) kan bara byggas på Windows och testas alltså inte av kommandot ovan.
+
 ```bash
 cd Android && ./gradlew build
 ```
 
-Saknas en verktygskedja i sessionen, installera den senaste versionen. Det finns inga byggkontroller i CI just nu, så Apple-apparna verifieras inte automatiskt; skriv i PR:en vilka plattformar du har testat och vilka som inte gick att testa.
+Saknas en verktygskedja i sessionen, installera den senaste versionen. Det finns inga byggkontroller i CI just nu, så Apple-apparna verifieras inte automatiskt; skriv i PR:en vilka plattformar du har testat och vilka som inte gick att testa, särskilt Apple- och Windows-apparna.
 
 ## Regler för det här repot
 
@@ -59,13 +61,14 @@ Saknas en verktygskedja i sessionen, installera den senaste versionen. Det finns
 Läget 2026-10-28. Laga inget av detta på egen hand; det gäller workflows eller inställningar som ägaren äger.
 
 - **Release fallerar** på varje push till `main`: `release.yml` väntar på kontrollerna i `.github/release-required-checks` (Rust, .NET, Android, Swift och Apple), som inte längre körs.
-- **Dokumentationens adresser** i `zensical.toml` (`site_url` och `repo_url`) pekar på en äldre domän och ett gammalt repo, medan repots hemsida är `pissmyran.github.io/bastion`. Rätta det i en egen PR om det ingår i uppgiften.
+- **`repo_url`** i `zensical.toml` pekar på ett gammalt repo i stället för `pissmyran/bastion`. Rätta det i en egen PR om det ingår i uppgiften.
+- **`site_url`** i `zensical.toml` är en egen domän, medan repots hemsida på GitHub är `pissmyran.github.io/bastion`. Ändra inte `site_url` utan ägarens beslut.
 
 ## Granskning i det här repot
 
-- **Grind:** `main` kräver PR, linjär historik, lösta granskningstrådar och CodeQL utan fel eller allvarliga larm. Inga andra kontroller krävs, så de lokala testerna i Kommandon är testgrinden.
+- **Grind:** `main` kräver PR, linjär historik, lösta granskningstrådar och CodeQL utan fel eller allvarliga larm. Inga andra kontroller krävs, men de som körs ska vara gröna. De lokala testerna i Kommandon är testgrinden.
 - **CodeRabbit:** ärver den centrala konfigurationen i `pissmyran/coderabbit`. Repots `.coderabbit.yaml` pekar ut riskområden med egna granskningsinstruktioner; läs den del som gäller filerna du ändrar innan du börjar.
-- **Sourcery:** granskar också, som GitHub-app utan egen konfiguration här. Behandla dess trådar som CodeRabbits.
+- **Sourcery och Codex:** granskar också, som GitHub-appar utan egen konfiguration här, och de granskar även dokumentation. Behandla deras trådar som CodeRabbits.
 - **Extra noggrant:** nyckelhantering, kryptering, synk, värdnycklar och plattformsgränser.
 
 ## GitHub från sessionen
