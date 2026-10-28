@@ -11,7 +11,7 @@ Repositoryts egna dokument, manifests, workflows och versionerade konfiguration 
 
 ## Arbetsregler
 
-- Gren, pull request och granskning följer avsnittet Branches and review i `CLAUDE.md`: arbetet sker på en egen gren per session, med en pull request mot `main`.
+- Gren, pull request och granskning följer kärnreglerna i `CLAUDE.md`: arbetet sker på en egen gren per session, med en pull request mot `main`.
 - Commits och PR-titlar följer Conventional Commits, exempelvis `feat:`, `fix:`, `docs:`, `chore:`, `ci:` eller `test:`.
 - Läs hela reviewn, inklusive trådar som GitHub markerar som `outdated`, och verifiera att grundproblemet faktiskt är löst.
 - Bevara gränsen mellan delad `SSHCore` och plattformsspecifika UI/appar.
