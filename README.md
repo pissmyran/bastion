@@ -1,38 +1,30 @@
 # Bastion
 
-Bastion är ett multiplattformsprojekt med en delad Swift-baserad SSH-kärna och separata applikationsytor för Apple-plattformar, Android, Linux och Windows.
+**Dokumentation:** [pissmyran.github.io/bastion](https://pissmyran.github.io/bastion/)
 
-## Struktur
+Bastion är en SSH-klient för flera plattformar. Varje plattform har ett eget repo med egen kod, egna versioner och egen dokumentation. Det här repot är navet: det samlar länkarna, beskriver det som är gemensamt och tar emot ärenden som gäller alla plattformar.
 
-| Område | Plats | Teknik |
-| --- | --- | --- |
-| delad SSH-kärna + CLI | `Sources/`, `Tests/`, `Package.swift` | Swift / SwiftNIO |
-| iOS, macOS, tvOS | `App/` | Swift / XcodeGen |
-| Android | `Android/` | Kotlin / Gradle |
-| Linux | `LinuxApp/` | Rust |
-| Windows | `WindowsApp/` | .NET |
+## Plattformarna
 
-## Snabb verifiering
+| Repo | För | Byggd med | Dokumentation |
+| --- | --- | --- | --- |
+| [Bastion för Apple](https://github.com/pissmyran/bastion_apple) | iPhone, iPad, Mac och Apple TV | Swift, SwiftNIO SSH, SwiftUI | [Dokumentation](https://pissmyran.github.io/bastion_apple/) |
+| [Bastion för Linux](https://github.com/pissmyran/bastion_linux) | Linux-skrivbordet | Rust, GTK 4, libadwaita, VTE, russh | [Dokumentation](https://pissmyran.github.io/bastion_linux/) |
+| [Bastion för Windows](https://github.com/pissmyran/bastion_windows) | Windows | C#, .NET, WinUI, SSH.NET | [Dokumentation](https://pissmyran.github.io/bastion_windows/) |
+| [Bastion för Android](https://github.com/pissmyran/bastion_android) | Android | Kotlin, Gradle, Apache MINA SSHD | [Dokumentation](https://pissmyran.github.io/bastion_android/) |
 
-Swift-kärnan:
+## Gemensamt
 
-```bash
-swift test
-```
+- **Synkformatet** för värdlistan delas av plattformarna som synkar. Källan är Swift-modellerna i [Bastion för Apple](https://github.com/pissmyran/bastion_apple); de andra repona testar mot kopior av fixturerna därifrån.
+- **Projektet** [Bastion](https://github.com/pissmyran/bastion/projects) samlar ärenden från alla fem repona i en vy.
+- **Reglerna** för arbetet i alla repon står i [STYRNING.md](https://github.com/pissmyran/.github/blob/main/STYRNING.md).
 
-Övriga plattformar har egna bygg- och verifieringsflöden; se **[dokumentationsöversikten](docs/index.md)**.
+## Rapportera
 
-## Dokumentation
+- **Fel eller önskemål för en plattform:** skapa ett issue i plattformens repo.
+- **Sådant som gäller alla plattformar** (synkformatet, gemensam dokumentation): skapa ett issue här.
+- **Säkerhetsproblem:** följ [SECURITY.md](SECURITY.md).
 
-Den publicerade dokumentationssajten är `https://docs.bastion.denied.se`. Källan är alltid repositoryts versionsstyrda `docs/`, och stable dokumentation byggs från samma Git-tagg som Bastions GitHub Release.
+## Historik
 
-- [Dokumentationsöversikt](docs/index.md)
-- [Projektkontext](docs/project-context.md) — plattformar och bygginvarianter
-- [Arkitektur](docs/architecture.md) — komponentgränser och delad kärna
-- [Drift och verifiering](docs/operations.md) — plattformsspecifika kontroller
-- [Release- och versionsstandard](docs/release-standard.md) — SemVer, PR-titlar och releasegränser
-- [SECURITY.md](SECURITY.md) — säkerhetsrapportering
-
-## Viktig Apple-invariant
-
-`App/Package.swift` är manifestet som dependency automation kan läsa. `App/generate-project.sh` läser dependencyversioner därifrån och matar dem vidare till XcodeGen. Generera därför inte Bastions Apple-projekt med en direkt `xcodegen generate --spec App/project.yml` om det kringgår wrappern.
+Fram till oktober 2026 låg alla plattformar i det här repot. Den gamla koden finns kvar i Git-historiken och i releaserna upp till v0.1.3.

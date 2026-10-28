@@ -1,15 +1,10 @@
-# Domain documentation
+# Domändokumentation
 
-This repository uses a **single-context** domain-documentation convention.
+Repot är navet för Bastion och innehåller ingen kod.
 
-## Read before domain-sensitive work
+## Läs före arbete
 
-1. `docs/project-context.md` for current technical state.
-2. `docs/architecture.md` for component and trust-boundary decisions.
-3. `docs/operations.md` for verified operational constraints.
-4. Relevant ADRs under `docs/adr/`, when present.
-5. Root `CONTEXT.md`, when an explicit domain glossary/context has been introduced.
+1. `README.md` och `docs/plattformar.md` för hur repona hänger ihop.
+2. `docs/synkformat.md` när synken berörs. Själva formatet ändras i Bastion för Apple.
 
-Absence of `CONTEXT.md` or `docs/adr/` is not an error. Do not create placeholder files merely to satisfy the convention; create or update them when domain terminology or architectural decisions actually need durable representation.
-
-Use established repository vocabulary consistently. If a proposal conflicts with an existing recorded decision, surface that conflict explicitly rather than silently overriding it.
+Kod och plattformsdokumentation ändras i respektive plattformsrepo. Krockar ett förslag med ett dokumenterat beslut, säg det uttryckligen i stället för att skriva över beslutet i tysthet.
