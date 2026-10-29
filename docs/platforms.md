@@ -12,7 +12,7 @@ Each platform is its own repo with its own code, versions and documentation. A p
 ## What is shared
 
 - **The sync format.** Apple, Linux and Windows read and write the same format for the host list; see [Sync format](sync-format.md).
-- **The rules.** Every repo follows [STYRNING.md](https://github.com/pissmyran/.github/blob/main/STYRNING.md) in `pissmyran/.github`.
+- **The rules.** Every repo follows [GOVERNANCE.md](https://github.com/pissmyran/.github/blob/main/GOVERNANCE.md) in `pissmyran/.github`.
 - **The review.** Every repo inherits the central CodeRabbit configuration in [pissmyran/coderabbit](https://github.com/pissmyran/coderabbit).
 
 ## What is not shared
