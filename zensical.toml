@@ -1,7 +1,7 @@
 [project]
 site_name = "Bastion"
 site_url = "https://docs.bastion.denied.se"
-site_description = "En SSH-klient för iPhone, iPad, Mac, Apple TV, Linux, Windows och Android."
+site_description = "An SSH client for iPhone, iPad, Mac, Apple TV, Linux, Windows and Android."
 repo_url = "https://github.com/pissmyran/bastion"
 repo_name = "pissmyran/bastion"
 edit_uri = "edit/main/docs/"
@@ -9,21 +9,21 @@ docs_dir = "docs"
 site_dir = "site"
 copyright = "Bastion – Apache-2.0"
 nav = [
-  { "Start" = "index.md" },
-  { "Plattformarna" = "plattformar.md" },
-  { "Synkformat" = "synkformat.md" },
-  { "Bidra" = "bidra.md" },
+  { "Home" = "index.md" },
+  { "Platforms" = "platforms.md" },
+  { "Sync format" = "sync-format.md" },
+  { "Contribute" = "contributing.md" },
 ]
 extra_css = [
   "stylesheets/extra.css",
 ]
 
 [project.extra]
-tagline = "En SSH-klient, fyra plattformar. Välj din nedan; varje plattform har eget repo, egna versioner och egen dokumentation."
+tagline = "One SSH client, four platforms. Pick yours below; each platform has its own repo, versions and documentation."
 
 [project.theme]
 variant = "modern"
-language = "sv"
+language = "en"
 custom_dir = "overrides"
 logo = "assets/bastion.svg"
 favicon = "assets/bastion.svg"
@@ -46,7 +46,7 @@ features = [
 [[project.theme.palette]]
 media = "(prefers-color-scheme)"
 toggle.icon = "lucide/sun-moon"
-toggle.name = "Följ systemets tema"
+toggle.name = "Follow the system theme"
 
 [[project.theme.palette]]
 media = "(prefers-color-scheme: light)"
@@ -54,7 +54,7 @@ scheme = "default"
 primary = "black"
 accent = "deep orange"
 toggle.icon = "lucide/sun"
-toggle.name = "Byt till mörkt tema"
+toggle.name = "Switch to dark mode"
 
 [[project.theme.palette]]
 media = "(prefers-color-scheme: dark)"
@@ -62,4 +62,10 @@ scheme = "slate"
 primary = "black"
 accent = "deep orange"
 toggle.icon = "lucide/moon"
-toggle.name = "Byt till systemets tema"
+toggle.name = "Switch to the system theme"
+
+# The pages were renamed when the hub switched to English; keep the old URLs working.
+[project.plugins.redirects.redirect_maps]
+"plattformar.md" = "platforms.md"
+"synkformat.md" = "sync-format.md"
+"bidra.md" = "contributing.md"

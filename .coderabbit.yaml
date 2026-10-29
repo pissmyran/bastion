@@ -4,19 +4,19 @@ inheritance: true
 
 reviews:
   path_instructions:
-    # Publicering av versioner.
+    # Publishing releases.
     - path: ".github/{workflows/release.yml,scripts/semantic_release.py,scripts/wait_for_checks.py,release-baseline,release-required-checks}"
       instructions: |
-        När releasebeslut eller kontrollgrind ändras, kontrollera
-        att tagg, kontroller och publicering avser samma target_sha.
-        Saknade, väntande eller misslyckade obligatoriska kontroller
-        får inte räknas som godkända. Kontrollera paginering och
-        senaste resultat per kontroll och utfärdare vid omkörningar.
-        Repot är ett nav utan kod; CodeQL för Actions är den kontroll
-        som finns. Kod och kodkontroller hör hemma i plattformsrepona.
+        When release decisions or the check gate change, check
+        that the tag, the checks and the publication refer to the same target_sha.
+        Missing, pending or failed required checks must never
+        count as passed. Check pagination and the latest
+        result per check and issuer on reruns.
+        The repo is a hub without code; CodeQL for Actions is the check
+        that exists. Code and code checks belong in the platform repos.
 
-    # Ärendemallar som skickar vidare till plattformsrepona.
+    # Issue templates that route to the platform repos.
     - path: ".github/ISSUE_TEMPLATE/**"
       instructions: |
-        Kontrollera att länkarna pekar på rätt plattformsrepo och att
-        mallarna inte ber om hemligheter eller sårbarhetsdetaljer.
+        Check that the links point to the right platform repo and that
+        the templates never ask for secrets or vulnerability details.

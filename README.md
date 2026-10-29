@@ -1,30 +1,30 @@
 # Bastion
 
-**Dokumentation:** [pissmyran.github.io/bastion](https://pissmyran.github.io/bastion/)
+**Documentation:** [pissmyran.github.io/bastion](https://pissmyran.github.io/bastion/)
 
-Bastion är en SSH-klient för flera plattformar. Varje plattform har ett eget repo med egen kod, egna versioner och egen dokumentation. Det här repot är navet: det samlar länkarna, beskriver det som är gemensamt och tar emot ärenden som gäller alla plattformar.
+Bastion is an SSH client for several platforms. Each platform has its own repo with its own code, versions and documentation. This repo is the hub: it gathers the links, describes what is shared and takes issues that concern every platform.
 
-## Plattformarna
+## The platforms
 
-| Repo | För | Byggd med | Dokumentation |
+| Repo | For | Built with | Documentation |
 | --- | --- | --- | --- |
-| [Bastion för Apple](https://github.com/pissmyran/bastion_apple) | iPhone, iPad, Mac och Apple TV | Swift, SwiftNIO SSH, SwiftUI | [Dokumentation](https://pissmyran.github.io/bastion_apple/) |
-| [Bastion för Linux](https://github.com/pissmyran/bastion_linux) | Linux-skrivbordet | Rust, GTK 4, libadwaita, VTE, russh | [Dokumentation](https://pissmyran.github.io/bastion_linux/) |
-| [Bastion för Windows](https://github.com/pissmyran/bastion_windows) | Windows | C#, .NET, WinUI, SSH.NET | [Dokumentation](https://pissmyran.github.io/bastion_windows/) |
-| [Bastion för Android](https://github.com/pissmyran/bastion_android) | Android | Kotlin, Gradle, Apache MINA SSHD | [Dokumentation](https://pissmyran.github.io/bastion_android/) |
+| [Bastion for Apple](https://github.com/pissmyran/bastion_apple) | iPhone, iPad, Mac and Apple TV | Swift, SwiftNIO SSH, SwiftUI | [Documentation](https://pissmyran.github.io/bastion_apple/) |
+| [Bastion for Linux](https://github.com/pissmyran/bastion_linux) | the Linux desktop | Rust, GTK 4, libadwaita, VTE, russh | [Documentation](https://pissmyran.github.io/bastion_linux/) |
+| [Bastion for Windows](https://github.com/pissmyran/bastion_windows) | Windows | C#, .NET, WinUI, SSH.NET | [Documentation](https://pissmyran.github.io/bastion_windows/) |
+| [Bastion for Android](https://github.com/pissmyran/bastion_android) | Android | Kotlin, Gradle, Apache MINA SSHD | [Documentation](https://pissmyran.github.io/bastion_android/) |
 
-## Gemensamt
+## Shared
 
-- **Synkformatet** för värdlistan delas av plattformarna som synkar. Källan är Swift-modellerna i [Bastion för Apple](https://github.com/pissmyran/bastion_apple); de andra repona testar mot kopior av fixturerna därifrån.
-- **Projektet** [Bastion](https://github.com/pissmyran/bastion/projects) samlar ärenden från alla fem repona i en vy.
-- **Reglerna** för arbetet i alla repon står i [STYRNING.md](https://github.com/pissmyran/.github/blob/main/STYRNING.md).
+- **The sync format** for the host list is shared by the platforms that sync. The source is the Swift models in [Bastion for Apple](https://github.com/pissmyran/bastion_apple); the other repos test against copies of the fixtures from there.
+- **The project** [Bastion](https://github.com/pissmyran/bastion/projects) gathers issues from all five repos in one view.
+- **The rules** for working in every repo are in [STYRNING.md](https://github.com/pissmyran/.github/blob/main/STYRNING.md) (Swedish).
 
-## Rapportera
+## Reporting
 
-- **Fel eller önskemål för en plattform:** skapa ett issue i plattformens repo.
-- **Sådant som gäller alla plattformar** (synkformatet, gemensam dokumentation): skapa ett issue här.
-- **Säkerhetsproblem:** följ [SECURITY.md](SECURITY.md).
+- **Bugs or requests for one platform:** open an issue in that platform's repo.
+- **Anything that concerns every platform** (the sync format, shared documentation): open an issue here.
+- **Security problems:** follow [SECURITY.md](SECURITY.md).
 
-## Historik
+## History
 
-Fram till oktober 2026 låg alla plattformar i det här repot. Den gamla koden finns kvar i Git-historiken och i releaserna upp till v0.1.3.
+Until October 2026 every platform lived in this repo. The old code remains in the Git history and in the releases up to v0.1.3.
