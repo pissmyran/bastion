@@ -1,3 +1,7 @@
 # Zensical
 site/
 .DS_Store
+.token-optimizer/decisions.log
+.token-optimizer/state/
+.token-optimizer/probe/
+!.token-optimizer/optimize.sh
