@@ -22,4 +22,4 @@ Never report a vulnerability in a public issue. Follow [SECURITY.md](https://git
 
 ## Contributing code
 
-Code changes go into the platform's repo, not here. Each repo has a `CONTRIBUTING.md` and a `CLAUDE.md` with commands and rules. The rules for every repo are in [GOVERNANCE.md](https://github.com/pissmyran/.github/blob/main/GOVERNANCE.md).
+Code changes go into the platform's repo, not here. Each repo has a `CONTRIBUTING.md` and an `AGENTS.md` with commands and rules. The rules for every repo are in [GOVERNANCE.md](https://github.com/pissmyran/.github/blob/main/GOVERNANCE.md).
