@@ -63,3 +63,9 @@ primary = "black"
 accent = "deep orange"
 toggle.icon = "lucide/moon"
 toggle.name = "Switch to the system theme"
+
+# The pages were renamed when the hub switched to English; keep the old URLs working.
+[project.plugins.redirects.redirect_maps]
+"plattformar.md" = "platforms.md"
+"synkformat.md" = "sync-format.md"
+"bidra.md" = "contributing.md"
