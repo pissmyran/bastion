@@ -1,19 +1,20 @@
 # AGENTS.md
 
-## Läs först
+## Read first
 
-1. [CLAUDE.md](CLAUDE.md) – kärnregler, kommandon och granskning.
-2. [docs/plattformar.md](docs/plattformar.md) – hur repona hänger ihop.
-3. [docs/synkformat.md](docs/synkformat.md) – när synken berörs.
+1. [CLAUDE.md](CLAUDE.md): core rules, commands and review.
+2. [docs/platforms.md](docs/platforms.md): how the repos fit together.
+3. [docs/sync-format.md](docs/sync-format.md): when sync is involved.
 
-## Arbetsregler
+## Working rules
 
-- Gren, pull request och granskning följer kärnreglerna i `CLAUDE.md`.
-- Läs hela granskningen, även trådar som GitHub markerar som `outdated`, och kontrollera att grundproblemet faktiskt är löst.
-- Kod hör inte hemma här. Skicka kodändringar till rätt plattformsrepo.
-- Lägg aldrig hemligheter eller inloggningsuppgifter i repot eller i publik dokumentation.
+- Branches, pull requests and review follow the core rules in `CLAUDE.md`.
+- Read the whole review, including threads GitHub marks as `outdated`, and check that the root cause is actually fixed.
+- Code does not belong here. Send code changes to the right platform repo.
+- Never put secrets or credentials in the repo or in public documentation.
+- Everything is written in English.
 
-## Agentfärdigheter
+## Agent skills
 
-- **Issues:** läs `docs/agents/issue-tracker.md` innan du läser, skapar eller publicerar ärenden.
-- **Domän:** följ `docs/agents/domain.md`.
+- **Issues:** read `docs/agents/issue-tracker.md` before reading, creating or publishing issues.
+- **Domain:** follow `docs/agents/domain.md`.

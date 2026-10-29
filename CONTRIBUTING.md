@@ -1,30 +1,34 @@
-# Bidra till Bastion
+# Contributing to Bastion
 
-Tack för att du vill bidra. Det här repot är navet för Bastion och innehåller ingen kod.
+Thanks for wanting to contribute.
 
-## Var ändringen hör hemma
+This repo is the Bastion hub and holds no code.
 
-- **Kod och plattformsdokumentation:** i plattformens repo – [Apple](https://github.com/pissmyran/bastion_apple), [Linux](https://github.com/pissmyran/bastion_linux), [Windows](https://github.com/pissmyran/bastion_windows) eller [Android](https://github.com/pissmyran/bastion_android). Följ det repots `CONTRIBUTING.md` och `CLAUDE.md`.
-- **Synkformatet:** i [Bastion för Apple](https://github.com/pissmyran/bastion_apple), som äger formatet.
-- **Navets sajt och gemensam dokumentation:** här.
+## Where a change belongs
 
-## Rapportera
+- **Code and platform documentation:** in the platform's repo: [Apple](https://github.com/pissmyran/bastion_apple), [Linux](https://github.com/pissmyran/bastion_linux), [Windows](https://github.com/pissmyran/bastion_windows) or [Android](https://github.com/pissmyran/bastion_android).
+- **The sync format:** in [Bastion for Apple](https://github.com/pissmyran/bastion_apple), which owns it.
+- **The hub site and shared documentation:** here.
 
-- **Fel och önskemål:** skapa ett issue i berört repo; se [Bidra och rapportera](docs/bidra.md).
-- **Säkerhetsproblem:** följ [SECURITY.md](SECURITY.md). Publicera aldrig sårbarhetsdetaljer i ett issue, en pull request eller en discussion.
+## Reporting
 
-## Arbetsflöde
+- **Bugs and requests:** open an issue with the matching form.
+- **Security problems:** follow [SECURITY.md](SECURITY.md). Never publish vulnerability details in an issue, pull request or discussion.
 
-1. Utgå från senaste `main` och arbeta på en egen gren.
-2. Håll ändringen liten och fokuserad.
-3. Bygg sajten lokalt: `pip install --upgrade zensical` och `zensical build --strict`.
-4. Öppna en pull request mot `main` med en titel enligt Conventional Commits, till exempel `docs: …`.
-5. Låt granskningen och kontrollerna bli gröna innan merge.
+## Workflow
 
-## Känslig information
+1. Start from the latest `main` and work on your own branch.
+2. Keep the change small and focused.
+3. Build the site locally: `pip install --upgrade zensical` and `zensical build --strict`.
+4. Open a pull request against `main` with a title that follows Conventional Commits, for example `fix: …`.
+5. Let the reviews and checks turn green before merging.
 
-Lägg aldrig in lösenord, tokens, nycklar, personuppgifter eller andra hemligheter i commits, issues, pull requests eller skärmbilder. Har något publicerats av misstag, behandla det som komprometterat och rotera det.
+Everything is written in English: code, comments, documentation, commit messages and pull requests.
 
-## Licens
+## Sensitive information
 
-Genom att bidra intygar du att du har rätt att skicka in ändringen. Bidrag omfattas av repots licens.
+Never commit passwords, tokens, keys, personal data or other secrets, and never put them in issues, pull requests or screenshots. If something leaks by mistake, treat it as compromised and rotate it.
+
+## License
+
+By contributing you confirm that you have the right to submit the change. Contributions are covered by the repository's license.

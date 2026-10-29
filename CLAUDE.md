@@ -2,11 +2,11 @@
 
 @AGENTS.md
 
-Vägledning för Claude Code i `pissmyran/bastion`: navet för SSH-klienten Bastion. Repot innehåller ingen kod, bara navets sajt, gemensam dokumentation och ärenden som gäller alla plattformar. Koden finns i [Bastion för Apple](https://github.com/pissmyran/bastion_apple), [Bastion för Linux](https://github.com/pissmyran/bastion_linux), [Bastion för Windows](https://github.com/pissmyran/bastion_windows), [Bastion för Android](https://github.com/pissmyran/bastion_android).
+Guidance for Claude Code in `pissmyran/bastion`: the hub for the SSH client Bastion. The repo holds no code, only the hub site, shared documentation and issues that concern every platform. The code lives in [Bastion for Apple](https://github.com/pissmyran/bastion_apple), [Bastion for Linux](https://github.com/pissmyran/bastion_linux), [Bastion for Windows](https://github.com/pissmyran/bastion_windows), [Bastion for Android](https://github.com/pissmyran/bastion_android).
 
-De gemensamma reglerna för alla repon finns i [STYRNING.md](https://github.com/pissmyran/.github/blob/main/STYRNING.md) i `pissmyran/.github`. Kärnreglerna nedan är en ordagrann kopia. Jämför versionen i markeringen med källan i början av varje session (`curl -sS https://raw.githubusercontent.com/pissmyran/.github/main/STYRNING.md`); är kopian äldre, uppdatera den först i en egen PR (`docs: sync core rules from .github`).
+The shared rules for all repos live in [STYRNING.md](https://github.com/pissmyran/.github/blob/main/STYRNING.md) in `pissmyran/.github`. The core rules below are a verbatim copy and stay in Swedish, because the copy is compared character by character with the source. Compare the version in the marker with the source at the start of every session (`curl -sS https://raw.githubusercontent.com/pissmyran/.github/main/STYRNING.md`); if the copy is older, update it first in a separate PR (`docs: sync core rules from .github`).
 
-## Kärnregler
+## Core rules
 
 <!-- kärnregler:start version=2026-10-28 källa=https://github.com/pissmyran/.github/blob/main/STYRNING.md -->
 1. **Inga personliga värden.** Repot är publikt. Skriv aldrig in riktiga id:n, domäner, e-postadresser, namn, nycklar, betallänkar eller kontouppgifter i kod, konfiguration, tester, dokumentation eller commit-meddelanden. Använd platshållare och `example.com`-värden.
@@ -26,45 +26,46 @@ De gemensamma reglerna för alla repon finns i [STYRNING.md](https://github.com/
 15. **GitHub bara via REST.** `gh pr` och `gh issue` fungerar inte i molnsessioner (GraphQL är avstängt). Använd `gh api` och de särskilda `ccr`-vägarna; se avsnittet GitHub från sessionen.
 <!-- kärnregler:slut -->
 
-## Kommandon
+## Commands
 
-Bygg sajten strikt:
+Build the site strictly:
 
 ```bash
 pip install --upgrade zensical && zensical build --strict
 ```
 
-## Regler för det här repot
+## Rules for this repo
 
-- **Ingen kod här.** Kod, tester och plattformsdokumentation ändras i plattformsrepona. Synkformatet ändras i Bastion för Apple.
-- **Länkarna** till plattformsrepona och deras sajter finns i `README.md`, `docs/` och `.github/ISSUE_TEMPLATE/config.yml`. Byter ett repo namn, uppdatera alla tre.
-- **Dokumentationen** är en Zensical-sajt: `docs/`, `zensical.toml` och startsidans mall i `overrides/home.html`. Nya sidor läggs in i `nav` i `zensical.toml`.
-- **Releasen** styrs av PR-titlarna och `.github/release-required-checks` (`Analyze (actions)`). Sajten publiceras på GitHub Pages först när en release skapas, så en ändring av sajten som ska ut behöver `feat:` eller `fix:` i titeln.
-- **Projektet** Bastion (GitHub Projects) samlar ärenden från alla fem repona. Det kan inte läsas eller ändras från en molnsession.
+- **Language:** everything in this repo is English: documentation, PR titles and bodies, commit messages, review replies and labels. Only the core rules block above stays in Swedish.
+- **No code here.** Code, tests and platform documentation change in the platform repos. The sync format changes in Bastion for Apple.
+- **The links** to the platform repos and their sites are in `README.md`, `docs/` and `.github/ISSUE_TEMPLATE/config.yml`. If a repo is renamed, update all three.
+- **The documentation** is a Zensical site: `docs/`, `zensical.toml` and the home page template in `overrides/home.html`. New pages go into `nav` in `zensical.toml`.
+- **The release** is driven by the PR titles and `.github/release-required-checks` (`Analyze (actions)`). The site is published on GitHub Pages only when a release is created, so a site change that should go out needs `feat:` or `fix:` in the title.
+- **The project** Bastion (GitHub Projects) gathers issues from all five repos. It cannot be read or changed from a cloud session.
 
-## Kända avvikelser
+## Known deviations
 
-- **`site_url`** i `zensical.toml` är en egen domän, medan repots hemsida på GitHub är `pissmyran.github.io/bastion`. Ändra inte `site_url` utan ägarens beslut.
+- **`site_url`** in `zensical.toml` is a custom domain, while the repo's homepage on GitHub is `pissmyran.github.io/bastion`. Do not change `site_url` without the owner's decision.
 
-## Granskning i det här repot
+## Review in this repo
 
-- **Grind:** `main` kräver PR, linjär historik, lösta granskningstrådar och CodeQL utan fel eller allvarliga larm. Inga andra kontroller krävs, men de som körs ska vara gröna. Det strikta sajtbygget i Kommandon är testgrinden.
-- **CodeRabbit:** ärver den centrala konfigurationen i `pissmyran/coderabbit`. Repots `.coderabbit.yaml` pekar ut releasegrinden och ärendemallarna.
-- **Sourcery och Codex:** granskar också, som GitHub-appar utan egen konfiguration här, och de granskar även dokumentation. Behandla deras trådar som CodeRabbits.
-- **Extra noggrant:** länkar till plattformsrepona och releasegrinden.
+- **Gate:** `main` requires a PR, linear history, resolved review threads and CodeQL without errors or serious alerts. No other checks are required, but the ones that run must be green. The strict site build under Commands is the test gate.
+- **CodeRabbit:** inherits the central configuration in `pissmyran/coderabbit`. The repo's `.coderabbit.yaml` points out the release gate and the issue templates.
+- **Sourcery and Codex:** also review, as GitHub apps without their own configuration here, and they review documentation too. Treat their threads like CodeRabbit's.
+- **Extra care:** links to the platform repos and the release gate.
 
-## GitHub från sessionen
+## GitHub from a session
 
-GraphQL är avstängt, så `gh pr` och `gh issue` fungerar inte. Använd REST:
+GraphQL is disabled, so `gh pr` and `gh issue` do not work. Use REST:
 
-- Öppna PR: `gh api repos/pissmyran/bastion/pulls -f base=main -f head=<gren> -f title='…' -f body='…'`
-- PR från gren: `gh api 'repos/pissmyran/bastion/pulls?head=pissmyran:<gren>&state=open'`
-- Issue: `gh api repos/pissmyran/bastion/issues/<n>` och `…/issues/<n>/comments`
-- Granskningstrådar: `gh api repos/pissmyran/bastion/pulls/<n>/ccr/review_threads`
-- Svara i tråd: `gh api repos/pissmyran/bastion/pulls/<n>/comments/<id>/replies -f body='…'`
-- Lös tråd: `gh api -X POST repos/pissmyran/bastion/pulls/<n>/ccr/comments/<id>/resolve`
-- Kontroller: `gh api repos/pissmyran/bastion/commits/<sha>/check-runs`
-- Auto-merge på: `gh api -X PUT repos/pissmyran/bastion/pulls/<n>/ccr/auto_merge -f merge_method=squash`
-- Är PR:en redan klar att mergas (auto-merge vägras då), squash-merga direkt: `gh api -X PUT repos/pissmyran/bastion/pulls/<n>/merge -f merge_method=squash`
-- Stäng PR: `gh api -X PATCH repos/pissmyran/bastion/pulls/<n> -f state=closed`
-- Radera gren: GitHub raderar grenen vid merge. En stängd PR:s gren raderas med `git push origin --delete <gren>` (API-vägen är spärrad).
+- Open a PR: `gh api repos/pissmyran/bastion/pulls -f base=main -f head=<branch> -f title='…' -f body='…'`
+- PR from a branch: `gh api 'repos/pissmyran/bastion/pulls?head=pissmyran:<branch>&state=open'`
+- Issue: `gh api repos/pissmyran/bastion/issues/<n>` and `…/issues/<n>/comments`
+- Review threads: `gh api repos/pissmyran/bastion/pulls/<n>/ccr/review_threads`
+- Reply in a thread: `gh api repos/pissmyran/bastion/pulls/<n>/comments/<id>/replies -f body='…'`
+- Resolve a thread: `gh api -X POST repos/pissmyran/bastion/pulls/<n>/ccr/comments/<id>/resolve`
+- Checks: `gh api repos/pissmyran/bastion/commits/<sha>/check-runs`
+- Enable auto-merge: `gh api -X PUT repos/pissmyran/bastion/pulls/<n>/ccr/auto_merge -f merge_method=squash`
+- If the PR is already mergeable (auto-merge is then refused), squash-merge directly: `gh api -X PUT repos/pissmyran/bastion/pulls/<n>/merge -f merge_method=squash`
+- Close a PR: `gh api -X PATCH repos/pissmyran/bastion/pulls/<n> -f state=closed`
+- Delete a branch: GitHub deletes the branch on merge. A closed PR's branch is deleted with `git push origin --delete <branch>` (the API route is blocked).

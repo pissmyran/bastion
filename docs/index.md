@@ -1,67 +1,67 @@
 ---
-title: Start
+title: Home
 template: home.html
 hide:
   - navigation
   - toc
 ---
 
-## Välj plattform { #plattformar }
+## Choose a platform { #platforms }
 
 <div class="grid cards" markdown>
 
--   **Bastion för Apple**
+-   **Bastion for Apple**
 
     ---
 
-    SSH-klienten för iPhone, iPad, Mac och Apple TV. Här finns också den delade Swift-kärnan SSHCore och synkformatet.
+    The SSH client for iPhone, iPad, Mac and Apple TV. Also home to the shared Swift core SSHCore and the sync format.
 
-    [Dokumentation](https://pissmyran.github.io/bastion_apple/) · [Källkod](https://github.com/pissmyran/bastion_apple)
+    [Documentation](https://pissmyran.github.io/bastion_apple/) · [Source](https://github.com/pissmyran/bastion_apple)
 
--   **Bastion för Linux**
-
-    ---
-
-    SSH-klienten för Linux-skrivbordet, skriven i Rust med GTK 4 och libadwaita.
-
-    [Dokumentation](https://pissmyran.github.io/bastion_linux/) · [Källkod](https://github.com/pissmyran/bastion_linux)
-
--   **Bastion för Windows**
+-   **Bastion for Linux**
 
     ---
 
-    SSH-klienten för Windows, med en .NET-kärna och ett WinUI-gränssnitt.
+    The SSH client for the Linux desktop, written in Rust with GTK 4 and libadwaita.
 
-    [Dokumentation](https://pissmyran.github.io/bastion_windows/) · [Källkod](https://github.com/pissmyran/bastion_windows)
+    [Documentation](https://pissmyran.github.io/bastion_linux/) · [Source](https://github.com/pissmyran/bastion_linux)
 
--   **Bastion för Android**
+-   **Bastion for Windows**
 
     ---
 
-    SSH-klienten för Android, skriven i Kotlin med Apache MINA SSHD.
+    The SSH client for Windows, with a .NET core and a WinUI interface.
 
-    [Dokumentation](https://pissmyran.github.io/bastion_android/) · [Källkod](https://github.com/pissmyran/bastion_android)
+    [Documentation](https://pissmyran.github.io/bastion_windows/) · [Source](https://github.com/pissmyran/bastion_windows)
+
+-   **Bastion for Android**
+
+    ---
+
+    The SSH client for Android, written in Kotlin with Apache MINA SSHD.
+
+    [Documentation](https://pissmyran.github.io/bastion_android/) · [Source](https://github.com/pissmyran/bastion_android)
 
 </div>
 
-## Gemensamt
+## Shared
 
 <div class="grid cards" markdown>
 
--   **Synkformat**
+-   **Sync format**
 
     ---
 
-    Formatet som värdlistan delar mellan plattformarna.
+    The format the host list shares between platforms.
 
-    [Synkformat](synkformat.md)
+    [Sync format](sync-format.md)
 
--   **Bidra och rapportera**
+-   **Contribute and report**
 
     ---
 
-    Var fel, önskemål och säkerhetsproblem hör hemma.
+    Where bugs, requests and security problems belong.
 
-    [Bidra](bidra.md)
+    [Contribute](contributing.md)
 
 </div>

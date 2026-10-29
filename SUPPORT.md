@@ -1,17 +1,17 @@
 # Support
 
-## Frågor
+## Questions
 
-Använd Discussions i berört repo för frågor om användning, eller här för frågor som gäller Bastion i stort.
+Use Discussions in the affected repository for questions about how to use Bastion.
 
-## Fel och önskemål
+## Bugs and requests
 
-Skapa ett issue i plattformens repo när du kan beskriva ett reproducerbart fel eller ett konkret önskemål. Gäller det alla plattformar, skapa det här. Se [Bidra och rapportera](docs/bidra.md).
+Open an issue in the affected repository when you can describe a reproducible bug or a concrete request. If it concerns every platform, open it here.
 
-## Säkerhetsproblem
+## Security problems
 
-Rapportera aldrig sårbarheter, tokens eller nycklar publikt. Följ [SECURITY.md](SECURITY.md).
+Never report vulnerabilities, tokens or keys publicly. Follow [SECURITY.md](SECURITY.md).
 
-## Omfattning
+## Scope
 
-Bastion underhålls efter tillgänglig tid. En fråga eller rapport innebär ingen garanterad svarstid.
+Bastion is maintained as time allows. A question or report does not guarantee a response time.
