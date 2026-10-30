@@ -1,5 +1,6 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 
+# Shared settings are inherited from pissmyran/coderabbit.
 inheritance: true
 
 reviews:
@@ -20,3 +21,38 @@ reviews:
       instructions: |
         Check that the links point to the right platform repo and that
         the templates never ask for secrets or vulnerability details.
+        Labels set by issue forms must exist in the repository's label set.
+        Forms must warn against posting secrets or personal data.
+
+    # Platform links and shared documentation in the hub.
+    - path: "{README.md,docs/**,.github/ISSUE_TEMPLATE/config.yml}"
+      instructions: |
+        Check platform repository and documentation links for consistent
+        destinations. When a platform repository is renamed, check all three
+        link locations: README.md, docs/ and .github/ISSUE_TEMPLATE/config.yml.
+        Platform implementation and platform documentation belong in the
+        platform repositories, not in this hub.
+        For sync-format documentation changes, preserve bastion_apple as the
+        source of truth for the format and fixtures. Do not propose independent
+        sync-format changes in the hub.
+
+    # Zensical configuration, templates and styles.
+    - path: "{zensical.toml,overrides/**,docs/stylesheets/**}"
+      instructions: |
+        Check changed navigation targets, redirects, assets and links against
+        repository files. Public site pages belong in navigation; internal
+        agent guidance under docs/agents/ does not need public navigation.
+        Preserve the existing custom site_url unless the owner explicitly
+        authorizes a change.
+        Review changed templates and styles for concrete broken navigation or
+        accessibility barriers, not cosmetic preferences.
+
+    # Review guidance only; workflows remain owner-managed.
+    - path: ".github/workflows/{docs.yml,reusable-zensical-docs.yml}"
+      instructions: |
+        Preserve publication from a published stable release tag rather than
+        unreleased main. Keep pull request validation separate from deployment.
+        Check that release resolution, the ref passed to the reusable workflow
+        and checkout all use the intended published stable release.
+        Preserve the inherited owner-managed workflow policy; this guidance
+        does not authorize workflow edits.
